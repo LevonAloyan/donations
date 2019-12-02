@@ -1,6 +1,6 @@
 package com.sagittarius.donations.controller;
 
-import com.sagittarius.donations.model.Response;
+import com.fasterxml.jackson.core.JsonProcessingException;
 import com.sagittarius.donations.model.dto.DonationDto;
 import com.sagittarius.donations.service.donation.DonationService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,7 +19,7 @@ public class DonationController {
 
     @MessageMapping("/donations")
     @SendTo("/topic/donations")
-    Response createDonation(DonationDto donationDto){
-        return new Response(donationService.create(donationDto).toString());
+    String createDonation(DonationDto donationDto)  {
+        return donationService.create(donationDto);
     }
 }

@@ -1,5 +1,6 @@
 package com.sagittarius.donations.service.donation;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
 import com.sagittarius.donations.model.dto.DonationDto;
 
 /**
@@ -7,6 +8,6 @@ import com.sagittarius.donations.model.dto.DonationDto;
  */
 public interface DonationService {
 
-    DonationDto create(DonationDto donationDto);
+    String create(DonationDto donationDto);
 
 }

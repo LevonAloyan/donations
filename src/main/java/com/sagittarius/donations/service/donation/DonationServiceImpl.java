@@ -1,5 +1,7 @@
 package com.sagittarius.donations.service.donation;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.sagittarius.donations.model.dto.DonationDto;
 import com.sagittarius.donations.persistance.entity.Donation;
 import com.sagittarius.donations.persistance.repository.donation.DonationRepository;
@@ -19,11 +21,20 @@ public class DonationServiceImpl implements DonationService {
     @Autowired
     private DonationRepository donationRepository;
 
+    @Autowired
+    private ObjectMapper objectMapper;
+
     @Override
-    public DonationDto create(DonationDto donationDto) {
+    public String create(DonationDto donationDto)  {
+
         Donation donation = donationMapper.toEntity(donationDto);
         Donation savedDonation = donationRepository.save(donation);
 
-        return donationMapper.toDto(savedDonation);
+        try {
+            return objectMapper.writeValueAsString(savedDonation);
+        } catch (JsonProcessingException e) {
+            e.printStackTrace();
+        }
+        return null;
     }
 }

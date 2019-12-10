@@ -32,9 +32,15 @@
                 <constraints nullable="false"/>
             </column>
 
-
         </createTable>
 
+    </changeSet>
+    <changeSet id="2019-12-10/001" author="levon">
+        <dropColumn tableName="donation" columnName="last_name" />
+        <dropColumn tableName="donation" columnName="company" />
+        <addColumn tableName="donation">
+            <column name="pop_up_timeout" type="BIGINT" afterColumn="description"/>
+        </addColumn>
     </changeSet>
 
 </databaseChangeLog>

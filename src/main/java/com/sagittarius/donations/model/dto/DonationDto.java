@@ -9,10 +9,9 @@ public class DonationDto {
 
     private Long id;
     private String name;
-    private String lastName;
-    private String company;
     private BigDecimal amount;
     private String description;
+    private long popUpTimeout;
 
     public String getName() {
         return name;
@@ -20,22 +19,6 @@ public class DonationDto {
 
     public void setName(String name) {
         this.name = name;
-    }
-
-    public String getLastName() {
-        return lastName;
-    }
-
-    public void setLastName(String lastName) {
-        this.lastName = lastName;
-    }
-
-    public String getCompany() {
-        return company;
-    }
-
-    public void setCompany(String company) {
-        this.company = company;
     }
 
     public BigDecimal getAmount() {
@@ -62,15 +45,11 @@ public class DonationDto {
         this.id = id;
     }
 
-    @Override
-    public String toString() {
-        return "DonationDto{" +
-                "id=" + id +
-                ", name='" + name + '\'' +
-                ", lastName='" + lastName + '\'' +
-                ", company='" + company + '\'' +
-                ", amount=" + amount +
-                ", description='" + description + '\'' +
-                '}';
+    public long getPopUpTimeout() {
+        return popUpTimeout;
+    }
+
+    public void setPopUpTimeout(long popUpTimeout) {
+        this.popUpTimeout = popUpTimeout;
     }
 }

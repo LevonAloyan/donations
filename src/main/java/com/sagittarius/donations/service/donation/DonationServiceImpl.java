@@ -9,6 +9,8 @@ import com.sagittarius.donations.service.donation.mapper.DonationMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 /**
  * @author LEVON
  */
@@ -36,5 +38,10 @@ public class DonationServiceImpl implements DonationService {
             e.printStackTrace();
         }
         return null;
+    }
+
+    @Override
+    public List<DonationDto> getAll() {
+        return donationMapper.toDtos(donationRepository.findAll());
     }
 }

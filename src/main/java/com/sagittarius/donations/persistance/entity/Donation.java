@@ -26,17 +26,14 @@ public class Donation {
     @Column(name = "name", nullable = false)
     private String name;
 
-    @Column(name = "last_name", nullable = false)
-    private String lastName;
-
-    @Column(name = "company", nullable = false)
-    private String company;
-
     @Column(name = "amount", nullable = false)
     private BigDecimal amount;
 
     @Column(name = "description", nullable = false)
     private String description;
+
+    @Column(name = "pop_up_timeout", nullable = false)
+    private long popUpTimeout;
 
     public Donation() {
     }
@@ -47,22 +44,6 @@ public class Donation {
 
     public void setName(String name) {
         this.name = name;
-    }
-
-    public String getLastName() {
-        return lastName;
-    }
-
-    public void setLastName(String lastName) {
-        this.lastName = lastName;
-    }
-
-    public String getCompany() {
-        return company;
-    }
-
-    public void setCompany(String company) {
-        this.company = company;
     }
 
     public BigDecimal getAmount() {
@@ -87,5 +68,13 @@ public class Donation {
 
     public void setId(Long id) {
         this.id = id;
+    }
+
+    public long getPopUpTimeout() {
+        return popUpTimeout;
+    }
+
+    public void setPopUpTimeout(long popUpTimeout) {
+        this.popUpTimeout = popUpTimeout;
     }
 }

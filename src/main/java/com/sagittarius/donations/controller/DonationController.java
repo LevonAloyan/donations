@@ -28,7 +28,7 @@ public class DonationController {
         return donationService.create(donationDto);
     }
 
-    @GetMapping("/donations")
+    @GetMapping("/alldonations")
     @ResponseBody
     public List<DonationDto> getAllDonations(){
         return donationService.getAll();

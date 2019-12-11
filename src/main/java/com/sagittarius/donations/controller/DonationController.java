@@ -1,6 +1,5 @@
 package com.sagittarius.donations.controller;
 
-import com.fasterxml.jackson.core.JsonProcessingException;
 import com.sagittarius.donations.model.dto.DonationDto;
 import com.sagittarius.donations.service.donation.DonationService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,7 +8,6 @@ import org.springframework.messaging.handler.annotation.SendTo;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import java.util.List;
@@ -34,5 +32,11 @@ public class DonationController {
     @CrossOrigin
     public List<DonationDto> getAllDonations(){
         return donationService.getAll();
+    }
+
+    @GetMapping("/donations/total")
+    @ResponseBody
+    public Double getTotalAmount(){
+        return donationService.calculateTotalAmount().doubleValue();
     }
 }

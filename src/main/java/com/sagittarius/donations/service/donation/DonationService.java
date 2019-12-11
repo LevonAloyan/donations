@@ -1,8 +1,8 @@
 package com.sagittarius.donations.service.donation;
 
-import com.fasterxml.jackson.core.JsonProcessingException;
 import com.sagittarius.donations.model.dto.DonationDto;
 
+import java.math.BigDecimal;
 import java.util.List;
 
 /**
@@ -14,4 +14,5 @@ public interface DonationService {
 
     List<DonationDto> getAll();
 
+    BigDecimal calculateTotalAmount();
 }

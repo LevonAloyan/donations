@@ -1,5 +1,6 @@
-package com.sagittarius.donations.persistance.entity;
+package com.sagittarius.donations.persistance.domain;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -7,7 +8,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import java.math.BigDecimal;
 
@@ -34,6 +35,13 @@ public class Donation {
 
     @Column(name = "pop_up_timeout", nullable = false)
     private long popUpTimeout;
+
+    @Column(name = "converted_amount", nullable = false)
+    private BigDecimal convertedAmount;
+
+    @OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @JoinColumn(name = "country_id", referencedColumnName = "id")
+    private Country country;
 
     public Donation() {
     }
@@ -76,5 +84,21 @@ public class Donation {
 
     public void setPopUpTimeout(long popUpTimeout) {
         this.popUpTimeout = popUpTimeout;
+    }
+
+    public Country getCountry() {
+        return country;
+    }
+
+    public void setCountry(Country country) {
+        this.country = country;
+    }
+
+    public BigDecimal getConvertedAmount() {
+        return convertedAmount;
+    }
+
+    public void setConvertedAmount(BigDecimal convertedAmount) {
+        this.convertedAmount = convertedAmount;
     }
 }

@@ -10,8 +10,10 @@ public class DonationDto {
     private Long id;
     private String name;
     private BigDecimal amount;
+    private CountryDto country;
     private String description;
     private long popUpTimeout;
+    private BigDecimal convertedAmount;
 
     public String getName() {
         return name;
@@ -51,5 +53,21 @@ public class DonationDto {
 
     public void setPopUpTimeout(long popUpTimeout) {
         this.popUpTimeout = popUpTimeout;
+    }
+
+    public CountryDto getCountry() {
+        return country;
+    }
+
+    public void setCountry(CountryDto country) {
+        this.country = country;
+    }
+
+    public BigDecimal getConvertedAmount() {
+        return convertedAmount;
+    }
+
+    public void setConvertedAmount(BigDecimal convertedAmount) {
+        this.convertedAmount = convertedAmount;
     }
 }

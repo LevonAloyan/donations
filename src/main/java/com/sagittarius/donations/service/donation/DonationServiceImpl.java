@@ -3,9 +3,8 @@ package com.sagittarius.donations.service.donation;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.sagittarius.donations.model.dto.DonationDto;
-import com.sagittarius.donations.persistance.domain.Country;
+import com.sagittarius.donations.persistance.domain.Currency;
 import com.sagittarius.donations.persistance.domain.Donation;
-import com.sagittarius.donations.persistance.repository.country.CountryRepository;
 import com.sagittarius.donations.persistance.repository.donation.DonationRepository;
 import com.sagittarius.donations.service.currencyconverter.CurrencyConverterService;
 import com.sagittarius.donations.service.donation.mapper.DonationMapper;
@@ -33,16 +32,17 @@ public class DonationServiceImpl implements DonationService {
     @Autowired
     private CurrencyConverterService currencyConverterService;
 
-    @Autowired
-    private CountryRepository countryRepository;
-
     @Override
     public String create(DonationDto donationDto) {
 
         Donation donation = donationMapper.toEntity(donationDto);
-        String countryName = donation.getCountry().getName();
-        Country country = countryRepository.findByName(countryName);
-        donation.setConvertedAmount(currencyConverterService.convert(country.getCurrencyCode(), "AMD", donation.getAmount()));
+
+        if (donation.getCurrency() == Currency.AMD) {
+            donation.setConvertedAmount(donation.getAmount());
+        } else {
+            donation.setConvertedAmount(currencyConverterService.convert(donationDto.getCurrency().name(), "AMD", donation.getAmount()));
+        }
+
         Donation savedDonation = donationRepository.save(donation);
         try {
             return objectMapper.writeValueAsString(savedDonation);

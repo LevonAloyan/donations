@@ -1,5 +1,7 @@
 package com.sagittarius.donations.model.dto;
 
+import com.sagittarius.donations.persistance.domain.Currency;
+
 import java.math.BigDecimal;
 
 /**
@@ -10,7 +12,7 @@ public class DonationDto {
     private Long id;
     private String name;
     private BigDecimal amount;
-    private CountryDto country;
+    private Currency currency;
     private String description;
     private long popUpTimeout;
     private BigDecimal convertedAmount;
@@ -55,19 +57,19 @@ public class DonationDto {
         this.popUpTimeout = popUpTimeout;
     }
 
-    public CountryDto getCountry() {
-        return country;
-    }
-
-    public void setCountry(CountryDto country) {
-        this.country = country;
-    }
-
     public BigDecimal getConvertedAmount() {
         return convertedAmount;
     }
 
     public void setConvertedAmount(BigDecimal convertedAmount) {
         this.convertedAmount = convertedAmount;
+    }
+
+    public Currency getCurrency() {
+        return currency;
+    }
+
+    public void setCurrency(Currency currency) {
+        this.currency = currency;
     }
 }

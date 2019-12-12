@@ -36,6 +36,7 @@ public class DonationController {
 
     @GetMapping("/donations/total")
     @ResponseBody
+    @CrossOrigin
     public Double getTotalAmount(){
         return donationService.calculateTotalAmount().doubleValue();
     }
